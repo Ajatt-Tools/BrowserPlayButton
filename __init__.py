@@ -15,6 +15,13 @@ def get_addon_path():
     return os.path.dirname(__file__)
 
 
+def truncate_str(s: str, max_len: int):
+    if len(s) > max_len:
+        return s[:max_len] + '...'
+    else:
+        return s
+
+
 def on_play_icon_press(editor: Editor):
     selected_text = editor.web.selectedText()
     if selected_text:
@@ -26,7 +33,13 @@ def on_play_icon_press(editor: Editor):
     if not results:
         tooltip("Error: no [sound:XXX]-element found")
     else:
-        sound.av_player.play_tags([SoundOrVideoTag(filename=filename) for filename in results])
+        tooltip(
+            '<div>Playing files:</div>'
+            '<ol style="margin: 0">'
+            f"{''.join([f'<li>{truncate_str(f, max_len=40)}</li>' for f in results])}"
+            '</ol>'
+        )
+        sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
 
 
 def on_setup_buttons(buttons: List[str], editor: Editor) -> None:
