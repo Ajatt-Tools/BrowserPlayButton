@@ -46,8 +46,8 @@ def play_text(text: str) -> None:
         sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
 
 
-def play_field(webview: EditorWebView) -> None:
-    field_content = webview.editor.note.fields[webview.editor.currentField]
+def play_field(editor: Editor) -> None:
+    field_content = editor.note.fields[editor.currentField]
     play_text(field_content)
 
 
@@ -65,7 +65,7 @@ def on_setup_buttons(buttons: List[str], editor: Editor) -> None:
 
 def add_context_menu_item(webview: EditorWebView, menu: QMenu) -> None:
     a: QAction = menu.addAction("Play field")
-    qconnect(a.triggered, lambda _=False: play_field(webview))
+    qconnect(a.triggered, lambda _=False: play_field(webview.editor))
 
 
 gui_hooks.editor_did_init_buttons.append(on_setup_buttons)
