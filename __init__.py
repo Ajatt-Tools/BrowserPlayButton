@@ -9,6 +9,7 @@ from aqt.qt import *
 from aqt.utils import tooltip
 
 SHORTCUT = 'alt+m'
+PLAY_ICON_FILENAME = 'play.png'
 
 
 def get_addon_path():
@@ -43,7 +44,7 @@ def on_play_icon_press(editor: Editor):
 
 
 def on_setup_buttons(buttons: List[str], editor: Editor) -> None:
-    icon_path = os.path.join(get_addon_path(), "play.png")
+    icon_path = os.path.join(get_addon_path(), PLAY_ICON_FILENAME)
     b = editor.addButton(
         icon_path,
         "play_sound_button",
