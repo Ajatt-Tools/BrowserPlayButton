@@ -18,7 +18,7 @@ def get_addon_path():
 
 def truncate_str(s: str, max_len: int):
     if len(s) > max_len:
-        return s[:max_len] + '...'
+        return s[:max_len] + '…'
     else:
         return s
 
