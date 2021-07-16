@@ -32,7 +32,7 @@ def on_play_icon_press(editor: Editor):
     results = re.findall(r'\[sound:(.+?\..+?)]', str(text))
 
     if not results:
-        tooltip("Error: no [sound:XXX]-element found")
+        tooltip("Error: no [sound:XXX]-elements found")
     else:
         tooltip(
             '<div>Playing files:</div>'
