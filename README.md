@@ -11,6 +11,8 @@ When clicked, it looks for `[sound:...]`-tags on the selected note
 and plays them in the order of their appearance on the note's fields.
 If there is selected text, the action is limited to the sound tags
 that appear only in the selected text.
+If you select "Play field" in the context menu,
+the action is limited to the currently selected field.
 
 Audio can be directly played with a shortcut: `alt + m`.
 
