@@ -37,12 +37,8 @@ def play_text(text: str) -> None:
     if not results:
         tooltip("Error: no [sound:XXX]-elements found")
     else:
-        tooltip(
-            '<div>Playing files:</div>'
-            '<ol style="margin: 0">'
-            f"{''.join([f'<li>{truncate_str(f, max_len=40)}</li>' for f in results])}"
-            '</ol>'
-        )
+        list_items = ''.join([f'<li>{truncate_str(f, max_len=40)}</li>' for f in results])
+        tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>')
         sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
 
 
