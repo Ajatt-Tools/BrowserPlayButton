@@ -1,5 +1,11 @@
 # Browser Play Button
 
+[![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/xxx)
+[![Chat](https://img.shields.io/badge/chat-join-green)](https://tatsumoto-ren.github.io/blog/join-our-community.html)
+[![Channel](https://shields.io/badge/channel-subscribe-blue?logo=telegram&color=3faee8)](https://t.me/ajatt_tools)
+[![Patreon](https://img.shields.io/badge/patreon-support-orange)](https://www.patreon.com/bePatron?u=43555128)
+![GitHub](https://img.shields.io/github/license/Ajatt-Tools/BrowserPlayButton)
+
 This tiny add-on adds a play button to the Anki Browser toolbar.
 When clicked, it looks for `[sound:...]`-tags on the selected note
 and plays them in the order of their appearance on the note's fields.
