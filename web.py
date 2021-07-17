@@ -30,13 +30,13 @@ def handle_js_messages(handled: Tuple[bool, Any], message: str, context: Any) ->
 
 
 def appropriate_context(context: Editor) -> bool:
-    if config['context'] == 'both':
+    if config.get('context') == 'both':
         return True
 
-    if config['context'] == 'add' and context.addMode is True:
+    if config.get('context') == 'add' and context.addMode is True:
         return True
 
-    if config['context'] == 'browser' and context.addMode is False:
+    if config.get('context') == 'browser' and context.addMode is False:
         return True
 
     return False

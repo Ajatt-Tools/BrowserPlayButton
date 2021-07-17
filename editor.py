@@ -33,22 +33,23 @@ def play_field(editor: Editor) -> None:
 
 def append_editor_button(buttons: List[str], editor: Editor) -> None:
     icon_path = os.path.join(get_addon_path(), PLAY_ICON_FILENAME)
+    shortcut = config.get('shortcut')
     b = editor.addButton(
         icon_path,
         "play_sound_button",
         lambda e: play_text(fetch_note_text(e)),
-        tip=f"play sound ({config['shortcut']})",
-        keys=config['shortcut'],
+        tip=f"play sound ({shortcut if shortcut else 'no shortcut'})",
+        keys=shortcut,
     )
     buttons.append(b)
 
 
 def add_context_menu_item(webview: EditorWebView, menu: QMenu) -> None:
-    if config['show_play_field_action'] is True:
+    if config.get('show_play_field_action') is True:
         play_field_action: QAction = menu.addAction("Play field")
         qconnect(play_field_action.triggered, lambda _=False: play_field(webview.editor))
 
-    if config['show_play_selection_action'] is True:
+    if config.get('show_play_selection_action') is True:
         play_selection_action: QAction = menu.addAction("Play selection")
         qconnect(play_selection_action.triggered, lambda _=False: play_text(webview.editor.web.selectedText()))
 

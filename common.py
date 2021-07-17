@@ -25,10 +25,10 @@ def play_text(text: str) -> None:
     results = re.findall(MEDIA_TAG_REGEX, str(text))
 
     if not results:
-        if config['show_tooltips'] is True:
+        if config.get('show_tooltips') is True:
             tooltip("Error: no [sound:XXX]-elements found")
     else:
-        if config['show_tooltips'] is True:
+        if config.get('show_tooltips') is True:
             list_items = ''.join([f'<li>{truncate_str(f, max_len=40)}</li>' for f in results])
             y_offset = TOOLTIP_ITEM_OFFSET * len(results) + TOOLTIP_INITIAL_OFFSET
             tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
