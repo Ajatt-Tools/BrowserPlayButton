@@ -3,6 +3,7 @@ from typing import List
 from aqt import gui_hooks
 from aqt.editor import Editor, EditorWebView
 from aqt.qt import *
+from aqt.utils import tooltip
 
 from .common import play_text
 from .config import config
@@ -23,8 +24,11 @@ def get_addon_path() -> str:
 
 
 def play_field(editor: Editor) -> None:
-    field_content = editor.note.fields[editor.currentField]
-    play_text(field_content)
+    if editor.currentField is not None:
+        field_content = editor.note.fields[editor.currentField]
+        play_text(field_content)
+    elif config.get('show_tooltips') is True:
+        tooltip("No field selected.")
 
 
 def append_editor_button(buttons: List[str], editor: Editor) -> None:
