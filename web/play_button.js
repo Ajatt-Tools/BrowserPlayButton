@@ -2,6 +2,7 @@ const BrowserPlayButton = {
     make_play_button: (ord, display) => {
         const play_button = document.createElement('span')
         play_button.classList.add('play-icon')
+        play_button.setAttribute('title', 'play sound');
         play_button.addEventListener('click', () => pycmd(`play_field:${ord}`))
         if (!display) {
             play_button.classList.add('hidden')
