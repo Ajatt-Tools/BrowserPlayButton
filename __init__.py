@@ -9,7 +9,7 @@ from aqt.qt import *
 from aqt.utils import tooltip
 
 SHORTCUT = 'alt+m'
-PLAY_ICON_FILENAME = 'play.png'
+PLAY_ICON_FILENAME = 'icons/play.png'
 
 
 def get_addon_path() -> str:
