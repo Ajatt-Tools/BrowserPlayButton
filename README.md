@@ -1,3 +1,5 @@
+<p align="center"><img src="icons/play.png" alt="icon" width="128px"></p>
+
 # Browser Play Button
 
 [![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/xxx)
