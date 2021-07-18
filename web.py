@@ -44,7 +44,7 @@ def appropriate_context(context: Editor) -> bool:
 
 
 def load_play_button_js(web_content: WebContent, context: Optional[Any]) -> None:
-    if isinstance(context, Editor) and appropriate_context(context):
+    if isinstance(context, Editor):
         addon_package = context.mw.addonManager.addonFromModule(__name__)
         base_path = f"/_addons/{addon_package}/web"
 
