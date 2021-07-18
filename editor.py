@@ -7,8 +7,7 @@ from aqt.utils import tooltip
 
 from .common import play_text
 from .config import config
-
-PLAY_ICON_FILENAME = 'icons/play.png'
+from .consts import *
 
 
 def fetch_note_text(editor: Editor) -> str:

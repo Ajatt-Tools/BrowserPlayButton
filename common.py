@@ -4,10 +4,7 @@ from anki.sound import SoundOrVideoTag
 from aqt import sound
 from aqt.utils import tooltip
 from .config import config
-
-TOOLTIP_ITEM_OFFSET = 14
-TOOLTIP_INITIAL_OFFSET = 80
-MEDIA_TAG_REGEX = r'\[sound:(.+?\..+?)]'
+from .consts import *
 
 
 def truncate_str(s: str, max_len: int) -> str:
