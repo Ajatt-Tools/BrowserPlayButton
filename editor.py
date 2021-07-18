@@ -31,6 +31,9 @@ def play_field(editor: Editor) -> None:
 
 
 def append_editor_button(buttons: List[str], editor: Editor) -> None:
+    if config.get('show_toolbar_button') is False:
+        return
+
     icon_path = os.path.join(get_addon_path(), PLAY_ICON_FILENAME)
     shortcut = config.get('shortcut')
     b = editor.addButton(
