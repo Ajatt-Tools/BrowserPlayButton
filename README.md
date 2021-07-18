@@ -22,6 +22,9 @@ Pressing on the button plays all audio files in the field.
 
 Audio can be directly played with a shortcut: `alt + m`.
 
+<p align="center"><img src="screenshots/play_button.webp" alt="screenshot"></p>
+<p align="center"><i>Screenshot.</i></p>
+
 ## Installation
 
 Install from [AnkiWeb](https://ankiweb.net/shared/info/xxx), or manually with `git`:
