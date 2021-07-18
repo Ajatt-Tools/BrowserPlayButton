@@ -1,5 +1,5 @@
-from . import editor
-from . import web
+from . import editor, web, config
 
 web.init()
 editor.init()
+config.init()
