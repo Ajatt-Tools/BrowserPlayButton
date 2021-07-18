@@ -105,3 +105,4 @@ def on_browser_setup_menus(browser: Browser) -> None:
 
 def init():
     gui_hooks.browser_menus_did_init.append(on_browser_setup_menus)
+    mw.addonManager.setConfigAction(__name__, on_open_settings)
