@@ -22,7 +22,7 @@ Pressing on the button plays all audio files in the field.
 
 Audio can be directly played with a shortcut: `alt + m`.
 
-<p align="center"><img src="screenshots/play_button.webp" alt="screenshot"></p>
+<p align="center"><img src=".github/play_button.webp" alt="screenshot"></p>
 <p align="center"><i>Screenshot.</i></p>
 
 ## Installation
@@ -40,6 +40,9 @@ via `Tools` > `Add-ons` and select `AJT Browser Play Button`.
 Then click the `Config` button on the right-side of the screen.
 
 Alternatively, open the Anki Browser and click `Edit` > `AJT Browser Play Button settings...`.
+
+<p align="center"><img src=".github/settings.webp" alt="screenshot"></p>
+<p align="center"><i>Settings.</i></p>
 
 ## Acknowledgements
 
