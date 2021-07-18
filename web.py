@@ -56,7 +56,7 @@ def on_load_note(js: str, _: Note, editor: Editor) -> str:
     if appropriate_context(editor):
         return js + "; BrowserPlayButton.load_icons(); "
     else:
-        return js
+        return js + "; BrowserPlayButton.hide_play_buttons(); "
 
 
 def on_bridge_cmd_wrapper(self: Editor, cmd: str):

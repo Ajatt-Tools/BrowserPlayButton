@@ -22,4 +22,14 @@ const BrowserPlayButton = {
             })
         })
     },
+    hide_play_buttons: () => {
+        const fields = document.getElementById("fields")
+        if (fields) {
+            for (field of fields.children) {
+                if (field.play_button !== undefined) {
+                    field.play_button.classList.toggle('hidden', true)
+                }
+            }
+        }
+    },
 };
