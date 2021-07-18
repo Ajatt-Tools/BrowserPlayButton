@@ -1,6 +1,6 @@
 <p align="center"><img src="icons/play.png" alt="icon" width="128px"></p>
 
-# Browser Play Button
+# AJT Browser Play Button
 
 [![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/xxx)
 [![Chat](https://img.shields.io/badge/chat-join-green)](https://tatsumoto-ren.github.io/blog/join-our-community.html)
@@ -13,14 +13,14 @@ When clicked, it looks for `[sound:...]`-tags on the selected note
 and plays them in the order of their appearance on the note's fields.
 If there is selected text, the action is limited to the sound tags
 that appear only in the selected text.
+
 If you select "Play field" in the context menu,
 the action is limited to the currently selected field.
 
-Audio can be directly played with a shortcut: `alt + m`.
+Each field that contains audio has a play button next to its name.
+Pressing on the button plays all audio files in the field.
 
-This add-on is similar to
-[Play audio in browser](https://ankiweb.net/shared/info/388541036)
-but doesn't create any dialog windows when playing audio.
+Audio can be directly played with a shortcut: `alt + m`.
 
 ## Installation
 
@@ -29,3 +29,16 @@ Install from [AnkiWeb](https://ankiweb.net/shared/info/xxx), or manually with `g
 ```
 $ git clone 'https://github.com/Ajatt-Tools/BrowserPlayButton.git' ~/.local/share/Anki2/addons21/BrowserPlayButton
 ```
+
+## Configuration
+
+To configure the add-on, open the Anki Add-on Menu
+via `Tools` > `Add-ons` and select `AJT Browser Play Button`.
+Then click the `Config` button on the right-side of the screen.
+
+Alternatively, open the Anki Browser and click `Edit` > `AJT Browser Play Button settings...`.
+
+## Acknowledgements
+
+* [Play audio in browser](https://ankiweb.net/shared/info/388541036). The idea and initial implementation.
+* [Ze Frozen Fields](https://ankiweb.net/shared/info/94610912). Field buttons functionality.
