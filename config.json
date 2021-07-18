@@ -1,8 +1,8 @@
 {
+  "context": "both",
   "shortcut": "alt+m",
   "show_tooltips": true,
   "show_play_field_action": true,
   "show_play_selection_action": true,
-  "show_toolbar_button": true,
-  "context": "both"
+  "show_toolbar_button": true
 }

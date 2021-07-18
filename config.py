@@ -38,8 +38,7 @@ class SettingsDialog(QDialog):
 
     def setup_layout(self) -> QBoxLayout:
         layout = QVBoxLayout(self)
-        layout.addLayout(self.make_context_selector_layout())
-        layout.addLayout(self.make_shortcut_edit_layout())
+        layout.addLayout(self.make_grid_layout())
         layout.addLayout(self.make_checkboxes_layout())
         layout.addLayout(self.make_bottom_layout())
         return layout
@@ -50,18 +49,16 @@ class SettingsDialog(QDialog):
             vbox.addWidget(checkbox.widget)
         return vbox
 
-    def make_context_selector_layout(self):
-        self.context_selector.addItems(('both', 'browser', 'add', 'none'))
-        hbox = QHBoxLayout()
-        hbox.addWidget(QLabel("Context"))
-        hbox.addWidget(self.context_selector)
-        return hbox
+    def make_grid_layout(self):
+        gbox = QGridLayout()
 
-    def make_shortcut_edit_layout(self):
-        hbox = QHBoxLayout()
-        hbox.addWidget(QLabel("Shortcut"))
-        hbox.addWidget(self.shortcut_edit)
-        return hbox
+        gbox.addWidget(QLabel("Context"), 0, 0)
+        gbox.addWidget(self.context_selector, 0, 1)
+
+        gbox.addWidget(QLabel("Shortcut"), 1, 0)
+        gbox.addWidget(self.shortcut_edit, 1, 1)
+
+        return gbox
 
     def make_bottom_layout(self):
         hbox = QHBoxLayout()
@@ -71,8 +68,9 @@ class SettingsDialog(QDialog):
         return hbox
 
     def load_initial_values(self):
-        self.shortcut_edit.setText(config.get('shortcut', 'alt+m'))
+        self.context_selector.addItems(('both', 'browser', 'add', 'none'))
         self.context_selector.setCurrentText(config.get('context', 'both'))
+        self.shortcut_edit.setText(config.get('shortcut', 'alt+m'))
 
         for checkbox in self.checkboxes:
             checkbox.widget.setChecked(config.get(checkbox.conf_id, True))
