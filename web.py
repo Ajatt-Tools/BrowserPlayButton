@@ -15,7 +15,7 @@ def handle_js_messages(handled: Tuple[bool, Any], message: str, context: Any) ->
         return handled
 
     if message == 'get_fields_with_audio':
-        return True, [contains_audio_tag(context.note[fld['name']]) for fld in context.note.model()["flds"]]
+        return True, [contains_audio_tag(field) for field in context.note.fields]
 
     cmd = message.split(":", maxsplit=1)
 

@@ -18,6 +18,7 @@ class SettingsDialog(QDialog):
         ('show_play_selection_action', 'Show "Play selection" context menu action'),
         ('show_tooltips', 'Show tooltips'),
     )
+    contexts = ('both', 'browser', 'add', 'none')
 
     def __init__(self, *args, **kwargs):
         super(SettingsDialog, self).__init__(*args, **kwargs)
@@ -68,8 +69,8 @@ class SettingsDialog(QDialog):
         return hbox
 
     def load_initial_values(self):
-        self.context_selector.addItems(('both', 'browser', 'add', 'none'))
-        self.context_selector.setCurrentText(config.get('context', 'both'))
+        self.context_selector.addItems((context.capitalize() for context in self.contexts))
+        self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
         self.shortcut_edit.setText(config.get('shortcut', 'alt+m'))
 
         for checkbox in self.checkboxes:
@@ -80,8 +81,8 @@ class SettingsDialog(QDialog):
         qconnect(self.ok_button.clicked, self.on_confirm)
 
     def on_confirm(self):
-        config['shortcut']: str = self.shortcut_edit.text()
-        config['context'] = self.context_selector.currentText()
+        config['shortcut'] = self.shortcut_edit.text()
+        config['context'] = self.context_selector.currentText().lower()
 
         for checkbox in self.checkboxes:
             config[checkbox.conf_id] = checkbox.widget.isChecked()
