@@ -2,7 +2,7 @@ const BrowserPlayButton = {
     make_play_button: (ord, display) => {
         const play_button = document.createElement('span')
         play_button.classList.add('play-icon')
-        play_button.setAttribute('title', 'play sound');
+        play_button.setAttribute('title', 'play sound')
         play_button.addEventListener('click', () => pycmd(`play_field:${ord}`))
         if (!display) {
             play_button.classList.add('hidden')
@@ -22,7 +22,7 @@ const BrowserPlayButton = {
             })
         })
     },
-    hide_play_buttons: () => {
+    hide_icons: () => {
         const fields = document.getElementById("fields")
         if (fields) {
             for (field of fields.children) {
