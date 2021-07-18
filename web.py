@@ -70,4 +70,4 @@ def init():
     gui_hooks.webview_will_set_content.append(load_play_button_js)
     gui_hooks.webview_did_receive_js_message.append(handle_js_messages)
     gui_hooks.editor_will_load_note.append(on_load_note)
-    Editor.onBridgeCmd = wrap(Editor.onBridgeCmd, on_bridge_cmd_wrapper, "before")
+    Editor.onBridgeCmd = wrap(Editor.onBridgeCmd, on_bridge_cmd_wrapper, "after")
