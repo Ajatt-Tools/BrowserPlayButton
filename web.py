@@ -1,12 +1,13 @@
 from typing import Tuple, Any, Optional
 
+from anki.hooks import wrap
 from anki.notes import Note
 from aqt import gui_hooks, mw
 from aqt.editor import Editor
 from aqt.webview import WebContent
-from .config import config
 
 from .common import contains_audio_tag, play_text
+from .config import config
 
 
 def handle_js_messages(handled: Tuple[bool, Any], message: str, context: Any) -> Tuple[bool, Any]:
@@ -58,10 +59,10 @@ def on_load_note(js: str, _: Note, editor: Editor) -> str:
         return js
 
 
-def update_play_buttons(txt: str, editor: Editor) -> str:
-    if appropriate_context(editor):
-        editor.web.eval("BrowserPlayButton.load_icons()")
-    return txt
+def on_bridge_cmd_wrapper(self: Editor, cmd: str):
+    # If a field has been edited, reload play buttons on fields in case audio was added or removed.
+    if cmd.startswith("key:") and appropriate_context(self):
+        self.web.eval("BrowserPlayButton.load_icons()")
 
 
 def init():
@@ -69,4 +70,4 @@ def init():
     gui_hooks.webview_will_set_content.append(load_play_button_js)
     gui_hooks.webview_did_receive_js_message.append(handle_js_messages)
     gui_hooks.editor_will_load_note.append(on_load_note)
-    gui_hooks.editor_will_munge_html.append(update_play_buttons)
+    Editor.onBridgeCmd = wrap(Editor.onBridgeCmd, on_bridge_cmd_wrapper, "before")
