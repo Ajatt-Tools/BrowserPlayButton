@@ -32,6 +32,7 @@ class SettingsDialog(QDialog):
         self.setLayout(self.setup_layout())
         self.connect_buttons()
         self.load_initial_values()
+        self.add_tooltips()
 
     @classmethod
     def make_checkboxes(cls) -> List[Toggleable]:
@@ -89,6 +90,17 @@ class SettingsDialog(QDialog):
 
         mw.addonManager.writeConfig(__name__, config)
         self.accept()
+
+    def add_tooltips(self):
+        self.context_selector.setToolTip(
+            "When to show play buttons next to field names.\n"
+            "\"Browser\" ― only when the Anki Browser is open.\n"
+            "\"Add\" ― only when the add dialog is open."
+        )
+        self.shortcut_edit.setToolTip(
+            "Shortcut for the toolbar button.\n"
+            "If the toolbar button is disabled, has no effect."
+        )
 
 
 def on_open_settings() -> None:
