@@ -44,6 +44,8 @@ Alternatively, open the Anki Browser and click `Edit` > `AJT Browser Play Button
 <p align="center"><img src=".github/settings.webp" alt="screenshot"></p>
 <p align="center"><i>Settings.</i></p>
 
+If you hover over a setting, it brings up a tooltip explaining what it does.
+
 ## Acknowledgements
 
 * [Play audio in browser](https://ankiweb.net/shared/info/388541036). The idea and initial implementation.
