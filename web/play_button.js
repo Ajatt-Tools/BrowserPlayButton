@@ -9,14 +9,14 @@ const BrowserPlayButton = {
     },
     load_icons: () => {
         // forEditorField is supported by Anki 2.1.41+
-        pycmd(`get_fields_with_audio`, (fields) => {
-            forEditorField(fields, (field, contains_audio) => {
-                if (field.play_button === undefined) {
-                    const play_button = BrowserPlayButton.make_play_button(field.getAttribute("ord"))
-                    field.labelContainer.insertBefore(play_button, field.label)
-                    field.play_button = play_button
+        pycmd(`get_fields_with_audio`, (audio_flags) => {
+            forEditorField(audio_flags, (field, contains_audio) => {
+                let play_button = field.getElementsByClassName(BrowserPlayButton.class_name)[0]
+                if (!play_button) {
+                    play_button = BrowserPlayButton.make_play_button(field.getAttribute("ord"))
+                    field.labelContainer.prepend(play_button)
                 }
-                field.play_button.classList.toggle('hidden', !contains_audio)
+                play_button.toggleAttribute('hidden', !contains_audio)
             })
         })
     },
@@ -24,7 +24,7 @@ const BrowserPlayButton = {
         const fields = document.getElementById("fields")
         if (fields) {
             for (const icon of fields.getElementsByClassName(BrowserPlayButton.class_name)) {
-                icon.classList.toggle('hidden', true)
+                icon.toggleAttribute('hidden', true)
             }
         }
     },

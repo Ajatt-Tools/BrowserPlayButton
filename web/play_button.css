@@ -27,6 +27,6 @@
     filter: invert(100%);
 }
 
-#fields .ajt-play-icon.hidden {
+#fields .ajt-play-icon[hidden] {
     display: none;
 }
