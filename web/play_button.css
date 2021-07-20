@@ -1,4 +1,4 @@
-.fname .play-icon {
+#fields .ajt-play-icon {
     display: inline-block;
     position: relative;
     margin-right: 3px;
@@ -6,7 +6,7 @@
     height: 14px;
 }
 
-.fname .play-icon::before {
+#fields .ajt-play-icon::before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -19,14 +19,14 @@
     background-size: cover;
 }
 
-.fname .play-icon:hover::before {
+#fields .ajt-play-icon:hover::before {
     opacity: 0.8;
 }
 
-.nightMode .fname .play-icon::before {
+.nightMode #fields .ajt-play-icon::before {
     filter: invert(100%);
 }
 
-.fname .play-icon.hidden {
+#fields .ajt-play-icon.hidden {
     display: none;
 }

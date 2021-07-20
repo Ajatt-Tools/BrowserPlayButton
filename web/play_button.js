@@ -1,7 +1,8 @@
 const BrowserPlayButton = {
+    class_name: 'ajt-play-icon',
     make_play_button: (ord) => {
         const play_button = document.createElement('span')
-        play_button.classList.add('play-icon')
+        play_button.classList.add(BrowserPlayButton.class_name)
         play_button.setAttribute('title', 'play sound')
         play_button.addEventListener('click', () => pycmd(`play_field:${ord}`))
         return play_button
@@ -22,7 +23,7 @@ const BrowserPlayButton = {
     hide_icons: () => {
         const fields = document.getElementById("fields")
         if (fields) {
-            for (const icon of fields.getElementsByClassName('play-icon')) {
+            for (const icon of fields.getElementsByClassName(BrowserPlayButton.class_name)) {
                 icon.classList.toggle('hidden', true)
             }
         }
