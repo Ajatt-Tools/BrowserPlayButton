@@ -1,32 +1,23 @@
 #fields .ajt-play-icon {
-    display: inline-block;
-    position: relative;
     margin-right: 3px;
     width: 14px;
     height: 14px;
-}
-
-#fields .ajt-play-icon::before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    top: 2px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-
     background-image: url("../icons/play.png");
     background-size: cover;
 }
 
-#fields .ajt-play-icon:hover::before {
+#fields .ajt-play-icon:hover {
     opacity: 0.8;
 }
 
-.nightMode #fields .ajt-play-icon::before {
+.nightMode #fields .ajt-play-icon {
     filter: invert(100%);
 }
 
 #fields .ajt-play-icon[hidden] {
     display: none;
+}
+#fields .d-flex {
+    justify-content: flex-start;
+    align-items: center;
 }

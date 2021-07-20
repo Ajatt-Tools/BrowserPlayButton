@@ -15,6 +15,7 @@ const BrowserPlayButton = {
                 if (!play_button) {
                     play_button = BrowserPlayButton.make_play_button(field.getAttribute("ord"))
                     field.labelContainer.prepend(play_button)
+                    field.labelContainer.classList.toggle('justify-content-between', false)
                 }
                 play_button.toggleAttribute('hidden', !contains_audio)
             })
