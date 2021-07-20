@@ -2,7 +2,7 @@
 
 # AJT Browser Play Button
 
-[![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/xxx)
+[![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/182970692)
 [![Chat](https://img.shields.io/badge/chat-join-green)](https://tatsumoto-ren.github.io/blog/join-our-community.html)
 [![Channel](https://shields.io/badge/channel-subscribe-blue?logo=telegram&color=3faee8)](https://t.me/ajatt_tools)
 [![Patreon](https://img.shields.io/badge/patreon-support-orange)](https://www.patreon.com/bePatron?u=43555128)
@@ -30,7 +30,7 @@ A demo can be viewed on
 
 ## Installation
 
-Install from [AnkiWeb](https://ankiweb.net/shared/info/xxx), or manually with `git`:
+Install from [AnkiWeb](https://ankiweb.net/shared/info/182970692), or manually with `git`:
 
 ```
 $ git clone 'https://github.com/Ajatt-Tools/BrowserPlayButton.git' ~/.local/share/Anki2/addons21/BrowserPlayButton
