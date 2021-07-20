@@ -22,6 +22,9 @@ Pressing on the button plays all audio files in the field.
 
 Audio can be directly played with a shortcut: `alt + m`.
 
+A demo can be viewed on
+<a target="_blank" href="https://youtu.be/9rpHtTrk2TM"><img src=".github/youtube_logo.webp" width="80px"></a>.
+
 <p align="center"><img src=".github/play_button.webp" alt="screenshot"></p>
 <p align="center"><i>Screenshot.</i></p>
 
