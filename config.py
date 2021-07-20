@@ -1,5 +1,4 @@
-from collections import namedtuple
-from typing import List
+from typing import Dict
 
 from aqt import mw, gui_hooks
 from aqt.browser import Browser
@@ -8,7 +7,6 @@ from aqt.qt import *
 from .consts import *
 
 config = mw.addonManager.getConfig(__name__)
-Toggleable = namedtuple('Toggleable', 'conf_id, widget')
 
 
 class SettingsDialog(QDialog):
@@ -35,8 +33,8 @@ class SettingsDialog(QDialog):
         self.add_tooltips()
 
     @classmethod
-    def make_checkboxes(cls) -> List[Toggleable]:
-        return [Toggleable(conf_id, QCheckBox(label)) for (conf_id, label) in cls.toggleables]
+    def make_checkboxes(cls) -> Dict[str, QCheckBox]:
+        return {conf_id: QCheckBox(label) for (conf_id, label) in cls.toggleables}
 
     def setup_layout(self) -> QBoxLayout:
         layout = QVBoxLayout(self)
@@ -47,8 +45,8 @@ class SettingsDialog(QDialog):
 
     def make_checkboxes_layout(self):
         vbox = QVBoxLayout()
-        for checkbox in self.checkboxes:
-            vbox.addWidget(checkbox.widget)
+        for widget in self.checkboxes.values():
+            vbox.addWidget(widget)
         return vbox
 
     def make_grid_layout(self):
@@ -74,8 +72,8 @@ class SettingsDialog(QDialog):
         self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
         self.shortcut_edit.setText(config.get('shortcut', 'alt+m'))
 
-        for checkbox in self.checkboxes:
-            checkbox.widget.setChecked(config.get(checkbox.conf_id, True))
+        for conf_id, widget in self.checkboxes.items():
+            widget.setChecked(config.get(conf_id, True))
 
     def connect_buttons(self):
         qconnect(self.cancel_button.clicked, self.reject)
@@ -85,8 +83,8 @@ class SettingsDialog(QDialog):
         config['shortcut'] = self.shortcut_edit.text()
         config['context'] = self.context_selector.currentText().lower()
 
-        for checkbox in self.checkboxes:
-            config[checkbox.conf_id] = checkbox.widget.isChecked()
+        for conf_id, widget in self.checkboxes.items():
+            config[conf_id] = widget.isChecked()
 
         mw.addonManager.writeConfig(__name__, config)
         self.accept()
@@ -100,6 +98,20 @@ class SettingsDialog(QDialog):
         self.shortcut_edit.setToolTip(
             "Shortcut for the toolbar button.\n"
             "If the toolbar button is disabled, has no effect."
+        )
+        self.checkboxes['show_tooltips'].setToolTip(
+            "Notify what files are being played\n"
+            "and show errors if no audio files found."
+        )
+        self.checkboxes['show_play_field_action'].setToolTip(
+            "Add a context menu action to play audio in the selected field."
+        )
+        self.checkboxes['show_play_selection_action'].setToolTip(
+            "Add a context menu action to play audio in the selected text."
+        )
+        self.checkboxes['show_toolbar_button'].setToolTip(
+            "Add a play button to the Editor toolbar\n"
+            "to play all audio files on the current note."
         )
 
 
