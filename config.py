@@ -21,7 +21,7 @@ class SettingsDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super(SettingsDialog, self).__init__(*args, **kwargs)
         self.setWindowTitle(f"{ADDON_NAME} settings")
-        self.setMinimumSize(200, 80)
+        self.setMinimumSize(320, 240)
         self.ok_button = QPushButton("Ok")
         self.cancel_button = QPushButton("Cancel")
         self.shortcut_edit = QLineEdit()
@@ -40,6 +40,8 @@ class SettingsDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.addLayout(self.make_grid_layout())
         layout.addLayout(self.make_checkboxes_layout())
+        layout.addWidget(QLabel("<i>Reopen the Browser window to apply the changes.</i>"), alignment=Qt.AlignLeft)
+        layout.addStretch()
         layout.addLayout(self.make_bottom_layout())
         return layout
 
