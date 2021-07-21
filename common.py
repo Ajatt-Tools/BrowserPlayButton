@@ -1,4 +1,5 @@
 import re
+from typing import List
 
 from anki.sound import SoundOrVideoTag
 from aqt import sound
@@ -18,6 +19,12 @@ def contains_audio_tag(txt: str):
     return bool(re.search(MEDIA_TAG_REGEX, txt, re.MULTILINE))
 
 
+def play_tooltip(filenames: List[str]):
+    list_items = ''.join([f'<li><code>{truncate_str(f, max_len=40)}</code></li>' for f in filenames])
+    y_offset = TOOLTIP_INITIAL_OFFSET + TOOLTIP_ITEM_OFFSET * len(filenames)
+    tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
+
+
 def play_text(text: str) -> None:
     results = re.findall(MEDIA_TAG_REGEX, str(text))
 
@@ -26,7 +33,5 @@ def play_text(text: str) -> None:
             tooltip("Error: no [sound:XXX]-elements found")
     else:
         if config.get('show_tooltips') is True:
-            list_items = ''.join([f'<li>{truncate_str(f, max_len=40)}</li>' for f in results])
-            y_offset = TOOLTIP_ITEM_OFFSET * len(results) + TOOLTIP_INITIAL_OFFSET
-            tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
+            play_tooltip(results)
         sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
