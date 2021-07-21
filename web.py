@@ -20,8 +20,7 @@ def handle_js_messages(handled: Tuple[bool, Any], message: str, context: Any) ->
     cmd = message.split(":", maxsplit=1)
 
     if cmd[0] == "play_field":
-        idx = int(cmd[1])
-        play_text(context.note.fields[idx])
+        play_text(context.note.fields[int(cmd[1])])
         return True, None
 
     return handled
