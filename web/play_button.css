@@ -18,6 +18,7 @@
 #fields .ajt-play-icon[hidden] {
     display: none;
 }
+
 #fields .d-flex {
     justify-content: flex-start;
     align-items: center;
