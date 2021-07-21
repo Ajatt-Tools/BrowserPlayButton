@@ -53,3 +53,4 @@ If you hover over a setting, it brings up a tooltip explaining what it does.
 
 * [Play audio in browser](https://ankiweb.net/shared/info/388541036). The idea and initial implementation.
 * [Ze Frozen Fields](https://ankiweb.net/shared/info/94610912). Field buttons functionality.
+[GitHub link](https://github.com/hgiesel/anki_frozen_fields).
