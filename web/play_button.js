@@ -1,5 +1,6 @@
 const BrowserPlayButton = {
     class_name: 'ajt-play-icon',
+    trailing_num_regex: /[0-9]+$/,
     make_play_button: (ord) => {
         const play_button = document.createElement('span')
         play_button.classList.add(BrowserPlayButton.class_name)
@@ -8,16 +9,19 @@ const BrowserPlayButton = {
         return play_button
     },
     load_icons: () => {
-        // forEditorField is supported by Anki 2.1.41+
         pycmd(`get_fields_with_audio`, (audio_flags) => {
-            forEditorField(audio_flags, (field, contains_audio) => {
-                let play_button = field.getElementsByClassName(BrowserPlayButton.class_name)[0]
-                if (!play_button) {
-                    play_button = BrowserPlayButton.make_play_button(field.getAttribute("ord"))
-                    field.labelContainer.prepend(play_button)
-                }
-                play_button.toggleAttribute('hidden', !contains_audio)
-            })
+            const fnames = document.querySelectorAll('.fname')
+            if (audio_flags.length == fnames.length) {
+                audio_flags.forEach((contains_audio, i) => {
+                    const field_id = BrowserPlayButton.trailing_num_regex.exec(fnames[i].id)
+                    let play_button = fnames[i].getElementsByClassName(BrowserPlayButton.class_name)[0]
+                    if (!play_button) {
+                        play_button = BrowserPlayButton.make_play_button(field_id)
+                        fnames[i].prepend(play_button)
+                    }
+                    play_button.toggleAttribute('hidden', !contains_audio)
+                })
+            }
         })
     },
     hide_icons: () => {
