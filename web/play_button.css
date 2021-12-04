@@ -1,25 +1,23 @@
-#fields .ajt-play-icon {
+.label-container .ajt-play-icon {
     display: inline-block;
-    margin-right: 3px;
+    margin: 0 3px 0 0;
+    padding: 0;
     width: 14px;
     height: 14px;
     background-image: url("../icons/play.png");
     background-size: cover;
+    background-origin: content-box;
+    background-repeat: no-repeat;
 }
 
-#fields .ajt-play-icon:hover {
+.label-container .ajt-play-icon:hover {
     opacity: 0.8;
 }
 
-.nightMode #fields .ajt-play-icon {
+.nightMode .label-container .ajt-play-icon {
     filter: invert(100%);
 }
 
-#fields .ajt-play-icon[hidden] {
+.label-container .ajt-play-icon[hidden] {
     display: none;
-}
-
-#fields .d-flex {
-    justify-content: flex-start;
-    align-items: center;
 }
