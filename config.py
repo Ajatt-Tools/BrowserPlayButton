@@ -116,6 +116,9 @@ class SettingsDialog(QDialog):
             "Add a play button to the Editor toolbar\n"
             "to play all audio files on the current note."
         )
+        self.checkboxes['autoplay'].setToolTip(
+            "Automatically play audio when a note is selected."
+        )
 
 
 def on_open_settings() -> None:
