@@ -15,6 +15,7 @@ class SettingsDialog(QDialog):
         ('show_play_field_action', 'Show "Play field" context menu action'),
         ('show_play_selection_action', 'Show "Play selection" context menu action'),
         ('show_tooltips', 'Show tooltips'),
+        ('autoplay', 'Play audio automatically'),
     )
     contexts = ('both', 'browser', 'add', 'none')
 

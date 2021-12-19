@@ -56,6 +56,12 @@ def add_context_menu_item(webview: EditorWebView, menu: QMenu) -> None:
         qconnect(play_selection_action.triggered, lambda _=False: play_text(webview.editor.web.selectedText()))
 
 
+def on_load_note(editor: Editor) -> None:
+    if config['autoplay'] and editor.note:
+        play_text(fetch_note_text(editor))
+
+
 def init():
     gui_hooks.editor_did_init_buttons.append(append_editor_button)
     gui_hooks.editor_will_show_context_menu.append(add_context_menu_item)
+    gui_hooks.editor_did_load_note.append(on_load_note)
