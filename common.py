@@ -25,13 +25,13 @@ def play_tooltip(filenames: List[str]):
     tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
 
 
-def play_text(text: str) -> None:
+def play_text(text: str, quiet: bool = False) -> None:
     results = re.findall(MEDIA_TAG_REGEX, str(text))
 
     if not results:
-        if config.get('show_tooltips') is True:
+        if config.get('show_tooltips') is True and not quiet:
             tooltip("Error: no [sound:XXX]-elements found")
     else:
-        if config.get('show_tooltips') is True:
+        if config.get('show_tooltips') is True and not quiet:
             play_tooltip(results)
         sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
