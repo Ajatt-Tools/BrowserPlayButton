@@ -58,7 +58,7 @@ def add_context_menu_item(webview: EditorWebView, menu: QMenu) -> None:
 
 def on_load_note(editor: Editor) -> None:
     if config['autoplay'] and editor.note and getattr(editor, 'last_note_id__', None) != editor.note.id:
-        play_text(fetch_note_text(editor), quiet=True)
+        play_text('.'.join(editor.note.fields), quiet=True)
         setattr(editor, 'last_note_id__', editor.note.id)
 
 
