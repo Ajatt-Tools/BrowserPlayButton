@@ -126,6 +126,15 @@ def on_open_settings() -> None:
     dialog.exec_()
 
 
+def setup_mainwindow_menu():
+    from .ajt_common import menu_root_entry
+
+    root_menu = menu_root_entry()
+    action = QAction(f"{ADDON_NAME} settings…", root_menu)
+    action.triggered.connect(on_open_settings)
+    root_menu.addAction(action)
+
+
 def on_browser_setup_menus(browser: Browser) -> None:
     edit_menu = browser.form.menuEdit
     action = edit_menu.addAction(f"{ADDON_NAME} settings…")
@@ -135,3 +144,4 @@ def on_browser_setup_menus(browser: Browser) -> None:
 def init():
     gui_hooks.browser_menus_did_init.append(on_browser_setup_menus)
     mw.addonManager.setConfigAction(__name__, on_open_settings)
+    setup_mainwindow_menu()
