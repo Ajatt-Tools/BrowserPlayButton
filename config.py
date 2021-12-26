@@ -4,6 +4,7 @@ from aqt import mw, gui_hooks
 from aqt.browser import Browser
 from aqt.qt import *
 
+from .ajt_common import ShortCutGrabButton
 from .consts import *
 
 config = mw.addonManager.getConfig(__name__)
@@ -24,7 +25,7 @@ class SettingsDialog(QDialog):
         self.setWindowTitle(f"{ADDON_NAME} settings")
         self.setMinimumSize(320, 240)
         self.bottom_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
-        self.shortcut_edit = QLineEdit()
+        self.shortcut_edit = ShortCutGrabButton(initial_value=config['shortcut'])
         self.context_selector = QComboBox()
         self.checkboxes = self.make_checkboxes()
         self.setLayout(self.setup_layout())
@@ -60,7 +61,6 @@ class SettingsDialog(QDialog):
     def load_initial_values(self):
         self.context_selector.addItems((context.capitalize() for context in self.contexts))
         self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
-        self.shortcut_edit.setText(config.get('shortcut', 'alt+m'))
 
         for conf_id, widget in self.checkboxes.items():
             widget.setChecked(config.get(conf_id, True))
@@ -70,7 +70,7 @@ class SettingsDialog(QDialog):
         qconnect(self.bottom_box.rejected, self.reject)
 
     def on_confirm(self):
-        config['shortcut'] = self.shortcut_edit.text()
+        config['shortcut'] = self.shortcut_edit.value()
         config['context'] = self.context_selector.currentText().lower()
 
         for conf_id, widget in self.checkboxes.items():
