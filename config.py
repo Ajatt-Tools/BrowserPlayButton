@@ -38,7 +38,7 @@ class SettingsDialog(QDialog):
 
     def setup_layout(self) -> QBoxLayout:
         layout = QVBoxLayout(self)
-        layout.addLayout(self.make_grid_layout())
+        layout.addLayout(self.make_upper_layout())
         layout.addLayout(self.make_checkboxes_layout())
         layout.addWidget(QLabel("<i>Reopen the Browser window to apply the changes.</i>"), alignment=Qt.AlignLeft)
         layout.addStretch()
@@ -51,16 +51,11 @@ class SettingsDialog(QDialog):
             vbox.addWidget(widget)
         return vbox
 
-    def make_grid_layout(self):
-        gbox = QGridLayout()
-
-        gbox.addWidget(QLabel("Context"), 0, 0)
-        gbox.addWidget(self.context_selector, 0, 1)
-
-        gbox.addWidget(QLabel("Shortcut"), 1, 0)
-        gbox.addWidget(self.shortcut_edit, 1, 1)
-
-        return gbox
+    def make_upper_layout(self):
+        layout = QFormLayout()
+        layout.addRow("Context", self.context_selector)
+        layout.addRow("Shortcut", self.shortcut_edit)
+        return layout
 
     def load_initial_values(self):
         self.context_selector.addItems((context.capitalize() for context in self.contexts))
