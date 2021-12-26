@@ -23,8 +23,7 @@ class SettingsDialog(QDialog):
         super(SettingsDialog, self).__init__(*args, **kwargs)
         self.setWindowTitle(f"{ADDON_NAME} settings")
         self.setMinimumSize(320, 240)
-        self.ok_button = QPushButton("Ok")
-        self.cancel_button = QPushButton("Cancel")
+        self.bottom_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
         self.shortcut_edit = QLineEdit()
         self.context_selector = QComboBox()
         self.checkboxes = self.make_checkboxes()
@@ -43,7 +42,7 @@ class SettingsDialog(QDialog):
         layout.addLayout(self.make_checkboxes_layout())
         layout.addWidget(QLabel("<i>Reopen the Browser window to apply the changes.</i>"), alignment=Qt.AlignLeft)
         layout.addStretch()
-        layout.addLayout(self.make_bottom_layout())
+        layout.addWidget(self.bottom_box)
         return layout
 
     def make_checkboxes_layout(self):
@@ -63,13 +62,6 @@ class SettingsDialog(QDialog):
 
         return gbox
 
-    def make_bottom_layout(self):
-        hbox = QHBoxLayout()
-        hbox.addWidget(self.ok_button)
-        hbox.addWidget(self.cancel_button)
-        hbox.addStretch()
-        return hbox
-
     def load_initial_values(self):
         self.context_selector.addItems((context.capitalize() for context in self.contexts))
         self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
@@ -79,8 +71,8 @@ class SettingsDialog(QDialog):
             widget.setChecked(config.get(conf_id, True))
 
     def connect_buttons(self):
-        qconnect(self.cancel_button.clicked, self.reject)
-        qconnect(self.ok_button.clicked, self.on_confirm)
+        qconnect(self.bottom_box.accepted, self.on_confirm)
+        qconnect(self.bottom_box.rejected, self.reject)
 
     def on_confirm(self):
         config['shortcut'] = self.shortcut_edit.text()
