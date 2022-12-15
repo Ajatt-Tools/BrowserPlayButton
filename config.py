@@ -1,4 +1,5 @@
-from typing import Dict
+# Copyright: Ren Tatsumoto <tatsu at autistici.org>
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 from aqt import mw, gui_hooks
 from aqt.browser import Browser
@@ -21,7 +22,7 @@ class SettingsDialog(QDialog):
     contexts = ('both', 'browser', 'add', 'none')
 
     def __init__(self, *args, **kwargs):
-        super(SettingsDialog, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.setWindowTitle(f"{ADDON_NAME} settings")
         self.setMinimumSize(320, 240)
         self.bottom_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
@@ -34,7 +35,7 @@ class SettingsDialog(QDialog):
         self.add_tooltips()
 
     @classmethod
-    def make_checkboxes(cls) -> Dict[str, QCheckBox]:
+    def make_checkboxes(cls) -> dict[str, QCheckBox]:
         return {conf_id: QCheckBox(label) for (conf_id, label) in cls.toggleables}
 
     def setup_layout(self) -> QBoxLayout:
@@ -59,7 +60,7 @@ class SettingsDialog(QDialog):
         return layout
 
     def load_initial_values(self):
-        self.context_selector.addItems((context.capitalize() for context in self.contexts))
+        self.context_selector.addItems(context.capitalize() for context in self.contexts)
         self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
 
         for conf_id, widget in self.checkboxes.items():

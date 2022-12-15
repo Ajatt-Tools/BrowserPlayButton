@@ -1,4 +1,7 @@
-from typing import Tuple, Any, Optional
+# Copyright: Ren Tatsumoto <tatsu at autistici.org>
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+from typing import Any, Optional
 
 from anki.hooks import wrap
 from anki.notes import Note
@@ -10,7 +13,7 @@ from .common import contains_audio_tag, play_text
 from .config import config
 
 
-def handle_js_messages(handled: Tuple[bool, Any], message: str, context: Any) -> Tuple[bool, Any]:
+def handle_js_messages(handled: tuple[bool, Any], message: str, context: Any) -> tuple[bool, Any]:
     if not isinstance(context, Editor) or context.note is None:
         return handled
 

@@ -1,4 +1,5 @@
-from typing import List
+# Copyright: Ren Tatsumoto <tatsu at autistici.org>
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 from aqt import gui_hooks
 from aqt.editor import Editor, EditorWebView
@@ -30,7 +31,7 @@ def play_field(editor: Editor) -> None:
         tooltip("No field selected.")
 
 
-def append_editor_button(buttons: List[str], editor: Editor) -> None:
+def append_editor_button(buttons: list[str], editor: Editor) -> None:
     if config.get('show_toolbar_button') is False:
         return
 

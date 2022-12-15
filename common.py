@@ -1,9 +1,10 @@
-import re
-from typing import List
+# Copyright: Ren Tatsumoto <tatsu at autistici.org>
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
 from anki.sound import SoundOrVideoTag
 from aqt import sound
 from aqt.utils import tooltip
+
 from .config import config
 from .consts import *
 
@@ -19,7 +20,7 @@ def contains_audio_tag(txt: str):
     return bool(re.search(MEDIA_TAG_REGEX, txt))
 
 
-def play_tooltip(filenames: List[str]):
+def play_tooltip(filenames: list[str]):
     list_items = ''.join([f'<li><code>{truncate_str(f, max_len=40)}</code></li>' for f in filenames])
     y_offset = TOOLTIP_INITIAL_OFFSET + TOOLTIP_ITEM_OFFSET * len(filenames)
     tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
