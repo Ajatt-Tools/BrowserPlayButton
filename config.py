@@ -5,7 +5,8 @@ from aqt import mw, gui_hooks
 from aqt.browser import Browser
 from aqt.qt import *
 
-from .ajt_common import ShortCutGrabButton
+from .ajt_common.about_menu import menu_root_entry
+from .ajt_common.grab_key import ShortCutGrabButton
 from .consts import *
 
 config = mw.addonManager.getConfig(__name__)
@@ -25,7 +26,7 @@ class SettingsDialog(QDialog):
         super().__init__(*args, **kwargs)
         self.setWindowTitle(f"{ADDON_NAME} settings")
         self.setMinimumSize(320, 240)
-        self.bottom_box = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        self.bottom_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         self.shortcut_edit = ShortCutGrabButton(initial_value=config['shortcut'])
         self.context_selector = QComboBox()
         self.checkboxes = self.make_checkboxes()
@@ -42,7 +43,10 @@ class SettingsDialog(QDialog):
         layout = QVBoxLayout(self)
         layout.addLayout(self.make_upper_layout())
         layout.addLayout(self.make_checkboxes_layout())
-        layout.addWidget(QLabel("<i>Reopen the Browser window to apply the changes.</i>"), alignment=Qt.AlignLeft)
+        layout.addWidget(
+            QLabel("<i>Reopen the Browser window to apply the changes.</i>"),
+            alignment=Qt.AlignmentFlag.AlignLeft
+        )
         layout.addStretch()
         layout.addWidget(self.bottom_box)
         return layout
@@ -111,15 +115,13 @@ class SettingsDialog(QDialog):
 
 def on_open_settings() -> None:
     dialog = SettingsDialog()
-    dialog.exec_()
+    dialog.exec()
 
 
 def setup_mainwindow_menu():
-    from .ajt_common import menu_root_entry
-
     root_menu = menu_root_entry()
     action = QAction(f"{ADDON_NAME} settings…", root_menu)
-    action.triggered.connect(on_open_settings)
+    qconnect(action.triggered, on_open_settings)
     root_menu.addAction(action)
 
 
