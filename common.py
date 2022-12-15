@@ -16,7 +16,7 @@ def truncate_str(s: str, max_len: int) -> str:
 
 
 def contains_audio_tag(txt: str):
-    return bool(re.search(MEDIA_TAG_REGEX, txt, re.MULTILINE))
+    return bool(re.search(MEDIA_TAG_REGEX, txt))
 
 
 def play_tooltip(filenames: List[str]):
