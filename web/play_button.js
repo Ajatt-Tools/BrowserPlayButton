@@ -9,7 +9,7 @@ const BrowserPlayButton = {
     },
     load_icons: () => {
         pycmd(`get_fields_with_audio`, (audio_flags) => {
-            const label_containers = document.querySelectorAll('.label-container > span:first-child')
+            const label_containers = document.querySelectorAll('.label-container > span:last-child')
             if (audio_flags !== null) {
                 audio_flags.forEach((contains_audio, i) => {
                     let play_button = label_containers[i].getElementsByClassName(BrowserPlayButton.class_name)[0]

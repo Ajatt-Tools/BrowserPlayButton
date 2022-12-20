@@ -1,17 +1,18 @@
 .label-container .ajt-play-icon {
-    display: inline-block;
-    margin: 0 3px 0 0;
+    display: block;
+    margin: 0;
     padding: 0;
-    width: 14px;
-    height: 14px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     background-image: url("../icons/play.png");
-    background-size: cover;
-    background-origin: content-box;
+    background-size: 16px;
+    background-origin: border-box;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .label-container .ajt-play-icon:hover {
-    opacity: 0.8;
+    filter: brightness(200%);
 }
 
 .nightMode .label-container .ajt-play-icon {
