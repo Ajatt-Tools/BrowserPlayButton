@@ -1,10 +1,13 @@
 # Copyright: Ren Tatsumoto <tatsu at autistici.org>
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
+import re
+
 from anki.sound import SoundOrVideoTag
 from aqt import sound
 from aqt.utils import tooltip
 
+from .ajt_common.media import SOUND_TAG_REGEX, find_sounds
 from .config import config
 from .consts import *
 
@@ -17,7 +20,7 @@ def truncate_str(s: str, max_len: int) -> str:
 
 
 def contains_audio_tag(txt: str):
-    return bool(re.search(MEDIA_TAG_REGEX, txt))
+    return bool(re.search(SOUND_TAG_REGEX, txt))
 
 
 def play_tooltip(filenames: list[str]):
@@ -27,7 +30,7 @@ def play_tooltip(filenames: list[str]):
 
 
 def play_text(text: str, quiet: bool = False) -> None:
-    results = re.findall(MEDIA_TAG_REGEX, str(text))
+    results = find_sounds(text)
 
     if not results:
         if config.get('show_tooltips') is True and not quiet:
