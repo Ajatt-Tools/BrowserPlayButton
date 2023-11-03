@@ -42,7 +42,7 @@ To configure the add-on, open the Anki Add-on Menu
 via `Tools` > `Add-ons` and select `AJT Browser Play Button`.
 Then click the `Config` button on the right-side of the screen.
 
-Alternatively, open the Anki Browser and click `Edit` > `AJT Browser Play Button settings...`.
+Alternatively, open the Anki Browser and click `Edit` > `AJT Browser Play Button Options...`.
 
 <p align="center"><img src=".github/settings.webp" alt="screenshot"></p>
 <p align="center"><i>Settings.</i></p>
