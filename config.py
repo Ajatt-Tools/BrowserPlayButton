@@ -24,7 +24,7 @@ class SettingsDialog(QDialog):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.setWindowTitle(f"{ADDON_NAME} settings")
+        self.setWindowTitle(f"{ADDON_NAME} Options")
         self.setMinimumSize(320, 240)
         self.bottom_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
         self.shortcut_edit = ShortCutGrabButton(initial_value=config['shortcut'])
@@ -120,14 +120,14 @@ def on_open_settings() -> None:
 
 def setup_mainwindow_menu():
     root_menu = menu_root_entry()
-    action = QAction(f"{ADDON_NAME} settings…", root_menu)
+    action = QAction(f"{ADDON_NAME} Options…", root_menu)
     qconnect(action.triggered, on_open_settings)
     root_menu.addAction(action)
 
 
 def on_browser_setup_menus(browser: Browser) -> None:
     edit_menu = browser.form.menuEdit
-    action = edit_menu.addAction(f"{ADDON_NAME} settings…")
+    action = edit_menu.addAction(f"{ADDON_NAME} Options…")
     qconnect(action.triggered, on_open_settings)
 
 
