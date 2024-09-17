@@ -1,34 +1,34 @@
 # Copyright: Ajatt-Tools and contributors; https://github.com/Ajatt-Tools
 # License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
 
-from aqt import mw, gui_hooks
+from aqt import gui_hooks, mw
 from aqt.browser import Browser
 from aqt.qt import *
 
-from .config import config
 from .ajt_common.about_menu import menu_root_entry
 from .ajt_common.addon_config import set_config_action
 from .ajt_common.consts import ADDON_SERIES
 from .ajt_common.grab_key import ShortCutGrabButton
+from .config import config
 from .consts import ADDON_NAME
 
 
 class SettingsDialog(QDialog):
     toggleables = (
-        ('show_toolbar_button', 'Show toolbar button'),
-        ('show_play_field_action', 'Show "Play field" context menu action'),
-        ('show_play_selection_action', 'Show "Play selection" context menu action'),
-        ('show_tooltips', 'Show tooltips'),
-        ('autoplay', 'Play audio automatically'),
+        ("show_toolbar_button", "Show toolbar button"),
+        ("show_play_field_action", 'Show "Play field" context menu action'),
+        ("show_play_selection_action", 'Show "Play selection" context menu action'),
+        ("show_tooltips", "Show tooltips"),
+        ("autoplay", "Play audio automatically"),
     )
-    contexts = ('both', 'browser', 'add', 'none')
+    contexts = ("both", "browser", "add", "none")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.setWindowTitle(f"{ADDON_NAME} Options")
         self.setMinimumSize(320, 240)
         self.bottom_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
-        self.shortcut_edit = ShortCutGrabButton(initial_value=config['shortcut'])
+        self.shortcut_edit = ShortCutGrabButton(initial_value=config["shortcut"])
         self.context_selector = QComboBox()
         self.checkboxes = self.make_checkboxes()
         self.setLayout(self.setup_layout())
@@ -45,8 +45,7 @@ class SettingsDialog(QDialog):
         layout.addLayout(self.make_upper_layout())
         layout.addLayout(self.make_checkboxes_layout())
         layout.addWidget(
-            QLabel("<i>Reopen the Browser window to apply the changes.</i>"),
-            alignment=Qt.AlignmentFlag.AlignLeft
+            QLabel("<i>Reopen the Browser window to apply the changes.</i>"), alignment=Qt.AlignmentFlag.AlignLeft
         )
         layout.addStretch()
         layout.addWidget(self.bottom_box)
@@ -66,7 +65,7 @@ class SettingsDialog(QDialog):
 
     def load_initial_values(self):
         self.context_selector.addItems(context.capitalize() for context in self.contexts)
-        self.context_selector.setCurrentText(config.get('context', 'both').capitalize())
+        self.context_selector.setCurrentText(config.get("context", "both").capitalize())
 
         for conf_id, widget in self.checkboxes.items():
             widget.setChecked(config.get(conf_id, True))
@@ -76,8 +75,8 @@ class SettingsDialog(QDialog):
         qconnect(self.bottom_box.rejected, self.reject)
 
     def on_confirm(self):
-        config['shortcut'] = self.shortcut_edit.value()
-        config['context'] = self.context_selector.currentText().lower()
+        config["shortcut"] = self.shortcut_edit.value()
+        config["context"] = self.context_selector.currentText().lower()
 
         for conf_id, widget in self.checkboxes.items():
             config[conf_id] = widget.isChecked()
@@ -88,30 +87,25 @@ class SettingsDialog(QDialog):
     def add_tooltips(self):
         self.context_selector.setToolTip(
             "When to show play buttons next to field names.\n"
-            "\"Browser\" ― only when the Anki Browser is open.\n"
-            "\"Add\" ― only when the add dialog is open."
+            '"Browser" ― only when the Anki Browser is open.\n'
+            '"Add" ― only when the add dialog is open.'
         )
         self.shortcut_edit.setToolTip(
-            "Shortcut for the toolbar button.\n"
-            "If the toolbar button is disabled, has no effect."
+            "Shortcut for the toolbar button.\n" "If the toolbar button is disabled, has no effect."
         )
-        self.checkboxes['show_tooltips'].setToolTip(
-            "Notify what files are being played\n"
-            "and show errors if no audio files found."
+        self.checkboxes["show_tooltips"].setToolTip(
+            "Notify what files are being played\n" "and show errors if no audio files found."
         )
-        self.checkboxes['show_play_field_action'].setToolTip(
+        self.checkboxes["show_play_field_action"].setToolTip(
             "Add a context menu action to play audio in the selected field."
         )
-        self.checkboxes['show_play_selection_action'].setToolTip(
+        self.checkboxes["show_play_selection_action"].setToolTip(
             "Add a context menu action to play audio in the selected text."
         )
-        self.checkboxes['show_toolbar_button'].setToolTip(
-            "Add a play button to the Editor toolbar\n"
-            "to play all audio files on the current note."
+        self.checkboxes["show_toolbar_button"].setToolTip(
+            "Add a play button to the Editor toolbar\n" "to play all audio files on the current note."
         )
-        self.checkboxes['autoplay'].setToolTip(
-            "Automatically play audio when a note is selected."
-        )
+        self.checkboxes["autoplay"].setToolTip("Automatically play audio when a note is selected.")
 
 
 def on_open_settings() -> None:
