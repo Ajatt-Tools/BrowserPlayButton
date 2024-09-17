@@ -14,13 +14,13 @@ from .consts import ADDON_NAME
 
 
 class SettingsDialog(QDialog):
-    toggleables = (
-        ("show_toolbar_button", "Show toolbar button"),
-        ("show_play_field_action", 'Show "Play field" context menu action'),
-        ("show_play_selection_action", 'Show "Play selection" context menu action'),
-        ("show_tooltips", "Show tooltips"),
-        ("autoplay", "Play audio automatically"),
-    )
+    toggleables = {
+        "show_toolbar_button": "Show toolbar button",
+        "show_play_field_action": 'Show "Play field" context menu action',
+        "show_play_selection_action": 'Show "Play selection" context menu action',
+        "show_tooltips": "Show tooltips",
+        "autoplay": "Play audio automatically",
+    }
     contexts = ("both", "browser", "add", "none")
 
     def __init__(self, *args, **kwargs):
@@ -38,7 +38,7 @@ class SettingsDialog(QDialog):
 
     @classmethod
     def make_checkboxes(cls) -> dict[str, QCheckBox]:
-        return {conf_id: QCheckBox(label) for (conf_id, label) in cls.toggleables}
+        return {conf_id: QCheckBox(label) for (conf_id, label) in cls.toggleables.items()}
 
     def setup_layout(self) -> QBoxLayout:
         layout = QVBoxLayout(self)
