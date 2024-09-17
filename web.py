@@ -10,7 +10,7 @@ from aqt.editor import Editor
 from aqt.webview import WebContent
 
 from .common import contains_audio_tag, play_text
-from .config import config
+from .settings_dialog import config
 
 
 def handle_js_messages(handled: tuple[bool, Any], message: str, context: Any) -> tuple[bool, Any]:

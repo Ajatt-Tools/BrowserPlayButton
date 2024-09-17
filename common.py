@@ -8,7 +8,7 @@ from aqt import sound
 from aqt.utils import tooltip
 
 from .ajt_common.media import SOUND_TAG_REGEX, find_sounds
-from .config import config
+from .settings_dialog import config
 from .consts import *
 
 
