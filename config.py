@@ -5,10 +5,11 @@ from aqt import mw, gui_hooks
 from aqt.browser import Browser
 from aqt.qt import *
 
-from .consts import ADDON_NAME
-from .ajt_common.consts import ADDON_SERIES
 from .ajt_common.about_menu import menu_root_entry
+from .ajt_common.addon_config import set_config_action
+from .ajt_common.consts import ADDON_SERIES
 from .ajt_common.grab_key import ShortCutGrabButton
+from .consts import ADDON_NAME
 
 config = mw.addonManager.getConfig(__name__)
 
@@ -134,5 +135,5 @@ def on_browser_setup_menus(browser: Browser) -> None:
 
 def init():
     gui_hooks.browser_menus_did_init.append(on_browser_setup_menus)
-    mw.addonManager.setConfigAction(__name__, on_open_settings)
+    set_config_action(on_open_settings)
     setup_mainwindow_menu()
