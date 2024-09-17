@@ -7,7 +7,7 @@ from aqt.qt import *
 from aqt.utils import tooltip
 
 from .common import play_text
-from .settings_dialog import config
+from .config import config
 from .consts import *
 
 

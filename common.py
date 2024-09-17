@@ -7,8 +7,8 @@ from anki.sound import SoundOrVideoTag
 from aqt import sound
 from aqt.utils import tooltip
 
+from .config import config
 from .ajt_common.media import SOUND_TAG_REGEX, find_sounds
-from .settings_dialog import config
 from .consts import *
 
 

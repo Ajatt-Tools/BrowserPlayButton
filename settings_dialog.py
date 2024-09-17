@@ -5,13 +5,12 @@ from aqt import mw, gui_hooks
 from aqt.browser import Browser
 from aqt.qt import *
 
+from .config import config
 from .ajt_common.about_menu import menu_root_entry
 from .ajt_common.addon_config import set_config_action
 from .ajt_common.consts import ADDON_SERIES
 from .ajt_common.grab_key import ShortCutGrabButton
 from .consts import ADDON_NAME
-
-config = mw.addonManager.getConfig(__name__)
 
 
 class SettingsDialog(QDialog):
@@ -83,7 +82,7 @@ class SettingsDialog(QDialog):
         for conf_id, widget in self.checkboxes.items():
             config[conf_id] = widget.isChecked()
 
-        mw.addonManager.writeConfig(__name__, config)
+        config.write_config()
         self.accept()
 
     def add_tooltips(self):
