@@ -1,4 +1,4 @@
-<p align="center"><img src="icons/play.png" alt="icon" width="128px"></p>
+<p align="center"><img src="browser_play_button/icons/play.png" alt="icon" width="128px"></p>
 
 # AJT Browser Play Button
 
