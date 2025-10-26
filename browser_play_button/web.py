@@ -11,6 +11,16 @@ from aqt.webview import WebContent
 
 from .common import contains_audio_tag, play_text
 from .config import config
+import pathlib
+from typing import Final
+
+
+CSS_PATH: Final[pathlib.Path] = pathlib.Path(__file__).parent / "web/play_button.css"
+JS_PATH: Final[pathlib.Path] = pathlib.Path(__file__).parent / "web/play_button.js"
+
+# Ensure everything is ok
+assert CSS_PATH.is_file(), "CSS must exist"
+assert JS_PATH.is_file(), "JS must exist"
 
 
 def handle_js_messages(handled: tuple[bool, Any], message: str, context: Any) -> tuple[bool, Any]:
