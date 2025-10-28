@@ -4,7 +4,7 @@
 import re
 
 from anki.sound import SoundOrVideoTag
-from aqt import sound
+from aqt import sound, mw
 from aqt.utils import tooltip
 
 from .ajt_common.media import SOUND_TAG_REGEX, find_sounds
@@ -30,7 +30,7 @@ def show_play_tooltip(filenames: list[str]) -> None:
 
 
 def play_text(text: str, quiet: bool = False) -> None:
-    results = find_sounds(text)
+    results = [filename for filename in find_sounds(text) if mw.col.media.have(filename)]
 
     if not results:
         if config.show_tooltips is True and not quiet:
