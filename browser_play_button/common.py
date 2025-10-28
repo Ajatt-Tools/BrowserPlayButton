@@ -23,7 +23,7 @@ def contains_audio_tag(txt: str):
     return bool(re.search(SOUND_TAG_REGEX, txt))
 
 
-def play_tooltip(filenames: list[str]):
+def show_play_tooltip(filenames: list[str]) -> None:
     list_items = "".join([f"<li><code>{truncate_str(f, max_len=40)}</code></li>" for f in filenames])
     y_offset = TOOLTIP_INITIAL_OFFSET + TOOLTIP_ITEM_OFFSET * len(filenames)
     tooltip(f'<div>Playing files:</div><ol style="margin: 0">{list_items}</ol>', y_offset=y_offset)
@@ -37,5 +37,5 @@ def play_text(text: str, quiet: bool = False) -> None:
             tooltip("Error: no [sound:XXX]-elements found")
     else:
         if config.show_tooltips is True and not quiet:
-            play_tooltip(results)
+            show_play_tooltip(results)
         sound.av_player.play_tags([SoundOrVideoTag(filename=f) for f in results])
