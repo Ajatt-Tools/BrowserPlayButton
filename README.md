@@ -32,8 +32,9 @@ A demo can be viewed on
 
 Install from [AnkiWeb](https://ankiweb.net/shared/info/182970692), or manually with `git`:
 
-```
-$ git clone 'https://github.com/Ajatt-Tools/BrowserPlayButton.git' ~/.local/share/Anki2/addons21/BrowserPlayButton
+```bash
+git clone 'https://github.com/Ajatt-Tools/BrowserPlayButton.git'
+ln -sr BrowserPlayButton/browser_play_button ~/.local/share/Anki2/addons21/BrowserPlayButton
 ```
 
 ## Configuration
