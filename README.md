@@ -5,7 +5,7 @@
 [![Rate on AnkiWeb](https://glutanimate.com/logos/ankiweb-rate.svg)](https://ankiweb.net/shared/info/182970692)
 [![Chat](https://img.shields.io/badge/chat-join-green)](https://tatsumoto-ren.github.io/blog/join-our-community.html)
 [![Channel](https://shields.io/badge/channel-subscribe-blue?logo=telegram&color=3faee8)](https://t.me/ajatt_tools)
-[![Patreon](https://img.shields.io/badge/patreon-support-orange)](https://www.patreon.com/bePatron?u=43555128)
+[![Patreon](https://img.shields.io/badge/donate-black?logo=monero)](https://ajatt.top/blog/donating-to-tatsumoto.html)
 ![GitHub](https://img.shields.io/github/license/Ajatt-Tools/BrowserPlayButton)
 
 This tiny add-on adds a play button to the Anki Browser's toolbar.
